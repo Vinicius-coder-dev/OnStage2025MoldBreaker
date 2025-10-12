@@ -44,7 +44,7 @@ void setup() {
 
 void loop() {
   String card_detected = "";
-  //Verifica o UART da raspberry
+  //UART verification occurs here
   if (Serial2.available()) {
     card_detected = Serial2.readStringUntil('\n');
   }
@@ -64,7 +64,7 @@ void loop() {
     sending[5] = 0x61;
 
     int number_of_commands = 0;
-    // Quantos comandos serão enviados
+    //The number of commands to be sent
     for (int y = 0; y < 4; y++) {
       if (cards_commands[card_detected.toInt()][y] != 0) {
         number_of_commands++;
@@ -74,7 +74,7 @@ void loop() {
       }
     }
 
-    //Lendo a lista de comandos de acordo com o número encontrado acima
+    //Sending the desired list of commands according to the number of the same
     for (int i = 0; i < number_of_commands / 2; i++) {
       sending[4] == cards_commands[card_detected.toInt()][i];
       sending[6] == cards_commands[card_detected.toInt()][i + 1];
