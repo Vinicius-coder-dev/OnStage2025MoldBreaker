@@ -36,6 +36,7 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
       Second_command = teste[6];
       Serial.println(First_command);
       Serial.println(Second_command);
+      // Commands to set the scenary
       if (First_command == 5) {
         if (Second_command == 1) {
           trap_spin = true;
@@ -79,7 +80,8 @@ void setup() {
 }
 
 void loop() {
-  pBLEScan->start(scanTime, false);
+  // start scaning here
+  pBLEScan->start(scanTime, false); 
   //Serial.println(millis() - teste);
   pBLEScan->clearResults();  // delete results fromBLEScan buffer to release memory
   if (trap_spin == true) {
@@ -125,6 +127,7 @@ void loop() {
 }
 
 int lerUltra() {
+  // ultrasonic scan function
   long duration, distance;
   digitalWrite(trigPin, LOW);  // Added this line
   delayMicroseconds(2);        // Added this line
